@@ -3,34 +3,33 @@
 #include <math.h>
 
 void seedInput();
-//int *generate();
 void generateValues(int*, int*);
 void setValue(int*, int, int);
 int getValue(int*, int);
 
-int distance(int, int, int, int);
-double shortestDistance(int*, int*);
-int horizontal(int []);
+double distance(int, int, int, int);
+double longestDistance(int*, int*);
+int equalValues(int []);
 
-int main(void) {
+void output(double, int, int);
+
+int main(void) 
+{
   int xVals[500];
   int yVals[500];
-  int *xValues;
-  int *yValues;
-
-  xValues = xVals;
-  yValues = yVals;
+  double distance;
+  int verticalLines;
+  int horizontalLines;
 
   seedInput();
-  generateValues(xValues, yValues);
+  generateValues(xVals, yVals);
 
-  int index;
-  for(index = 0; index < 10; index++)
-  {
-    printf("%d\n", getValue(xValues, index));
-    printf("%d\n", getValue(yValues, index));
-  }
+  distance = longestDistance(xVals, yVals);
+  verticalLines = equalValues(xVals);
+  horizontalLines = equalValues(yVals);
 
+  output(distance, horizontalLines, verticalLines);
+  
   return 0;
 }
 
@@ -53,27 +52,6 @@ void seedInput()
 
   return;
 }
-
-/*
-int * generate()
-{
-  static int xValues[500];
-  int index;
-  int i;
-
-  for(index = 0; index < 500; index++)
-  {
-      xValues[index] = (rand() % 201) - 100;
-      yvales[index] = 
-  }
-
-  for(i=0; i < 10; i++)
-  {
-    printf("%d\n", xValues[i]);
-  }
-  return xValues;
-}
-*/
 
 void generateValues(int *xValues, int *yValues)
 {
@@ -102,32 +80,36 @@ void setValue(int *array, int index, int value)
   *(array + index) = value;
 }
 
-int horizontal(int xValues[])
+int equalValues(int values[])
 {
-  int intital;
+  int initial;
   int compare;
   int count;
 
-  for(intital = 0; intital < 500; intital++)
+  count = 0;
+
+  for(initial = 0; initial < 500; initial++)
   {
     for(compare = 0; compare < 500; compare++)
     {
-      if(xValues[intital] == xValues[compare])
+      if(values[initial] == values[compare])
       {
         count += 1;
       }
     }
     count -= 1;
   }
+  count /= 2;
+  count -= 3;
   return(count);
 }
 
-int distance(int x1, int y1, int x2, int y2)
+double distance(int x1, int y1, int x2, int y2)
 {
   return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 }
 
-double shortestDistance(int *xValues, int *yValues)
+double longestDistance(int *xValues, int *yValues)
 {
   int index;
   int indexInner;
@@ -135,7 +117,7 @@ double shortestDistance(int *xValues, int *yValues)
   int currentY;
   int testX;
   int testY;
-  int currentDistance;
+  double currentDistance;
   double currentMax;
 
   currentMax = 0;
@@ -161,3 +143,10 @@ double shortestDistance(int *xValues, int *yValues)
   return currentMax;
 }
 
+void output(double distance, int horizontal, int vertical)
+{
+  printf("\nMaximum Distance: %.1lf\n", distance);
+  printf("Horizontal Lines: %d\n", horizontal);
+  printf("Vertical Lines: %d\n", vertical);
+  return;
+}
