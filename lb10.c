@@ -9,7 +9,7 @@ int getValue(int*, int);
 
 double distance(int, int, int, int);
 double longestDistance(int*, int*);
-int equalValues(int []);
+int equalValues(int [], int []);
 
 void output(double, int, int);
 
@@ -25,8 +25,8 @@ int main(void)
   generateValues(xVals, yVals);
 
   distance = longestDistance(xVals, yVals);
-  verticalLines = equalValues(xVals);
-  horizontalLines = equalValues(yVals);
+  verticalLines = equalValues(xVals, yVals);
+  horizontalLines = equalValues(yVals, xVals);
 
   output(distance, horizontalLines, verticalLines);
   
@@ -80,7 +80,7 @@ void setValue(int *array, int index, int value)
   *(array + index) = value;
 }
 
-int equalValues(int values[])
+int equalValues(int values[], int altvalues[])
 {
   int initial;
   int compare;
@@ -95,12 +95,16 @@ int equalValues(int values[])
       if(values[initial] == values[compare])
       {
         count += 1;
+        if(altvalues[initial] == altvalues[compare])
+        {
+          count -= 1;
+        }
       }
     }
-    count -= 1;
+    //count -= 1;
   }
   count /= 2;
-  count -= 3;
+  //count -= 3;
   return(count);
 }
 
