@@ -13,8 +13,13 @@ double shortestDistance(int*, int*);
 int horizontal(int []);
 
 int main(void) {
+  int xVals[500];
+  int yVals[500];
   int *xValues;
   int *yValues;
+
+  xValues = xVals;
+  yValues = yVals;
 
   seedInput();
   generateValues(xValues, yValues);
