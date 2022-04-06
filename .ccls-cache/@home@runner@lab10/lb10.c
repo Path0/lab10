@@ -105,8 +105,8 @@ void seedInput()
 ******+***-**-**-*------*-*-**-------*-*****--*****************************/
 void generateValues(int *xValues, int *yValues)
 {
-  int index;
-  int randomValue;
+  int index; // index value for the for loop
+  int randomValue; // random value to assign to x and/or y
   for(index = 0; index < ARRAYSIZE; index++)
   { 
     // generates x value then y value, repeat
@@ -135,7 +135,7 @@ void generateValues(int *xValues, int *yValues)
 ******+***-**-**-*------*-*-**-------*-*****--*****************************/
 int getValue(int *array, int index)
 {
-  return *(array + index); // aka array[index] but with pointers
+  return * (array + index); // aka array[index] but with pointers
 }
 
 /*****+***-**-**-*------*-*-**-------*-*****--******************************
@@ -157,7 +157,7 @@ int getValue(int *array, int index)
 ******+***-**-**-*------*-*-**-------*-*****--*****************************/
 void setValue(int *array, int index, int value)
 {
-  *(array + index) = value; // aka array[index] = value; but with pointers
+  * (array + index) = value; // aka array[index] = value; but with pointers
 }
 
 /*****+***-**-**-*------*-*-**-------*-*****--******************************
