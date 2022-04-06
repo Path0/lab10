@@ -101,10 +101,8 @@ int equalValues(int values[], int altvalues[])
         }
       }
     }
-    //count -= 1;
   }
   count /= 2;
-  //count -= 3;
   return(count);
 }
 
