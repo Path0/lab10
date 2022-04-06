@@ -59,6 +59,7 @@ int * generate()
   for(index = 0; index < 500; index++)
   {
       xValues[index] = (rand() % 201) - 100;
+      yvales[index] = 
   }
 
   for(i=0; i < 10; i++)
@@ -76,10 +77,12 @@ void generateValues(int *xValues, int *yValues)
   for(index = 0; index < 500; index++)
   {
     randomValue = (rand() % 201) - 100;
+    //*(xValues + index) = randomValue;
     setValue(xValues, index, randomValue);
         
     randomValue = (rand() % 201) - 100;
     setValue(yValues, index, randomValue);
+    //*(yValues + index) = randomValue;
   }  
 }
 
